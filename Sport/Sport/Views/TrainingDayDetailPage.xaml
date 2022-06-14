@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Sport.ViewModels" x:DataType="viewmodels:TrainingDayDetailViewModel"
+             x:Class="Sport.Views.TrainingDayDetailPage"
+             Shell.PresentationMode="NotAnimated"
+             Title="Training Detail"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <StackLayout VerticalOptions="FillAndExpand">
+        <Frame HasShadow="False" />
+
+
+        <StackLayout Padding="15" VerticalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="Training of" TextDecorations="Underline" TextColor="Black" FontAttributes="Bold"  FontSize="30"/>
+                <Label Text="{Binding Date}" TextColor="Black" TextDecorations="Underline" FontAttributes="Bold" TextTransform="Uppercase" FontSize="30"/>
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding Worked}" VerticalOptions="CenterAndExpand">
+                <Frame CornerRadius="10" Margin="0,10,0,0">
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="{Binding NameImageWorkout}" FontSize="25" WidthRequest="50" HeightRequest="50" CornerRadius="10" />
+                        <StackLayout VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
+                            <Label Text="{Binding NameWorkout}" TextColor="Black" FontSize="Medium" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding DifficultyWorkout}" TextTransform="Uppercase" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ViewWorkoutCommand}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    
+                </Frame>
+
+                <Frame CornerRadius="10" Margin="0,10,0,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Time Training" TextColor="#333" FontSize="Medium" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                        <Label Text="{Binding TimeTraining}" TextColor="Black" FontSize="Large" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame CornerRadius="10" Margin="0,10,0,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Round Performed" TextColor="#333" FontSize="Medium" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                        <Label Text="{Binding RoundPerformed}" TextColor="Black" FontSize="Large" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame CornerRadius="10" Margin="0,10,0,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Exercise Performed" TextColor="#333" FontSize="Medium" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                        <Label Text="{Binding ExercisePerformed}" TextColor="Black" FontSize="Large" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame CornerRadius="10" Margin="0,10,0,0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="Repetition Performed" TextColor="#333" FontSize="Medium" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                        <Label Text="{Binding RepetitionPerformed}" TextColor="Black" FontSize="Large" HorizontalOptions="EndAndExpand" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+            
+            <StackLayout IsVisible="{Binding Relaxation}" VerticalOptions="FillAndExpand">
+                <Button Text="You took a day off...OH dear" FontSize="Large" CornerRadius="20" BackgroundColor="Transparent"  TextColor="Red" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                <Button Text="OK" Command="{Binding OKCommand}" BackgroundColor="#5be9b3" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+
+        </StackLayout>
+
+    </StackLayout>
+        
+</ContentPage>

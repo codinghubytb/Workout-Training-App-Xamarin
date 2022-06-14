@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Sport.ViewModels" x:DataType="viewmodels:WorkoutDetailViewModel"
+             x:Class="Sport.Views.WorkoutDetailPage"
+             Shell.PresentationMode="NotAnimated"
+             Title="Workout Detail"
+             BackgroundColor="Black"
+             Shell.NavBarIsVisible="False">
+
+    <StackLayout Padding="20">
+        <ScrollView >
+            <StackLayout>
+
+                <StackLayout Margin="0,20,0,0">
+                    <Label Text="{Binding Name}" TextTransform="Uppercase" FontSize="35" HorizontalTextAlignment="Center" TextColor="White" />
+                    <ScrollView Orientation="Horizontal">
+                        <StackLayout x:Name="stackButtonBodyParts" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0">
+                            
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+
+
+                <Frame BackgroundColor="Black" Margin="0,20,0,0">
+                    <FlexLayout Direction="Row" JustifyContent="SpaceAround">
+                        <StackLayout>
+                            <Label Text="Rounds" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" />
+                            <Label Text="{Binding Rounds}" TextColor="#5be9b3" HorizontalTextAlignment="Center" FontSize="Large" />
+                        </StackLayout>
+                        <BoxView WidthRequest="2" BackgroundColor="White" />
+                        <StackLayout>
+                            <Label Text="Break" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Break}" TextColor="#5be9b3" HorizontalTextAlignment="Center" FontSize="Large" />
+                                <Label Text=" sec" TextColor="#5be9b3" HorizontalTextAlignment="Center" FontSize="Large" />
+                            </StackLayout>
+                        </StackLayout>
+                    </FlexLayout>
+                </Frame>
+
+                <Frame BackgroundColor="Black">
+                    <StackLayout>
+                        <Label Text="{Binding Description}" FontSize="Medium" TextColor="LightGray" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Margin="0,20,0,0">
+                    <Label Text="Exercise Training Rounds" TextColor="White" FontSize="Large"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding NbExerciseRound}" FontFamily="" TextColor="White"/>
+                        <Label Text="exercises" FontFamily="" TextColor="White"/>
+                    </StackLayout>
+                    <ScrollView >
+                        <StackLayout x:Name="stackLayoutExercise">
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+                
+            </StackLayout>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+            <Button Text="Delete" Command="{Binding DeleteCommand}" IsVisible="{Binding IsEdit}" BackgroundColor="Red"  TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="OK" Command="{Binding OKCommand}" BackgroundColor="#5be9b3" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+    
+    
+    
+</ContentPage>

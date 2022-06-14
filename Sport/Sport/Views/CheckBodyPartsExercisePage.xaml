@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sport.Views.CheckBodyPartsExercisePage"
+             Shell.PresentationMode="NotAnimated"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+    
+    <FlexLayout Direction="Column" JustifyContent="SpaceAround" Padding="15">
+        <Label Text="Select the parts of the body that the exercise works" TextColor="Gray" FontSize="Large" HorizontalTextAlignment="Center"/>
+        <Grid x:Name="grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+            <Button Text="Save 2/2" Command="{Binding SaveCommand}" BackgroundColor="#5be9b3" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </FlexLayout>
+</ContentPage>

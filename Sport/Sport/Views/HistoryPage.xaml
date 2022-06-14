@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Sport.ViewModels" xmlns:model="clr-namespace:Sport.Models"
+             x:Class="Sport.Views.HistoryPage"
+             Shell.NavBarIsVisible="False">
+
+    <StackLayout Padding="15">
+        <Frame HasShadow="False"/>
+        <Label Text="History Training" TextColor="Black" FontSize="30" HorizontalTextAlignment="Center"/>
+        
+        <RefreshView x:Name="refresh" Margin="0,20,0,0" x:DataType="local:HistoryViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsListView" 
+                ItemsSource="{Binding TrainingDayItem}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="10" x:DataType="model:TrainingDay">
+                            <StackLayout>
+                                <Label Text="Date Training : " FontSize="Medium" TextColor="Gray" VerticalTextAlignment="Center" />
+                                <Label Text="{Binding DateTime}" TextColor="Black" FontSize="Medium" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                            <Label Text="→" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30" TextColor="Black"/>
+
+                            <Frame BackgroundColor="#5be9b3">
+                                <Label Text="SHOW" TextTransform="Uppercase"  TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </Frame>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:HistoryViewModel}}, Path=TrainingTapped}"		
+                                        CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>   
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="Red"  TextColor="White" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"></Button>
+    </StackLayout>
+
+
+</ContentPage>

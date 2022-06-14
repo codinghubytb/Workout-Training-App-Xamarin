@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Sport.ViewModels" x:DataType="viewmodels:StopWatchViewModel"
+             x:Class="Sport.Views.StopWatchPage"
+             Shell.PresentationMode="NotAnimated"
+             Title="{Binding Title}"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <StackLayout Padding="15">
+        <Frame HasShadow="False"/>
+        <Label Text="Stop Watch ⏱️" HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="35"/>
+        <Image WidthRequest="200" HeightRequest="200" Source="gif_Timer.gif" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" IsAnimationPlaying="True"/>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="Hour" HorizontalTextAlignment="Center" WidthRequest="100" FontSize="15" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="" FontSize="15" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Minute" HorizontalTextAlignment="Center" WidthRequest="100" FontSize="15" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="" FontSize="15"  HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Second" WidthRequest="100" HorizontalTextAlignment="Center" FontSize="15" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Hour}" TextColor="Black" HorizontalTextAlignment="Center" WidthRequest="100" FontSize="30" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text=":" FontSize="30" TextColor="Black" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Minute}" TextColor="Black" HorizontalTextAlignment="Center" WidthRequest="100" FontSize="30" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text=":" FontSize="30" TextColor="Black" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="{Binding Second}" TextColor="Black" WidthRequest="100" HorizontalTextAlignment="Center" FontSize="30" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
+            <Button Text="Restart" TextColor="White" IsEnabled="{Binding IsRestart}" BackgroundColor="SkyBlue" Command="{Binding RestartTimerCommand}"/>
+            <Button Text="Start" TextColor="White" IsEnabled="{Binding IsStart}" BackgroundColor="#5be9b3" Command="{Binding StartTimerCommand}"/>
+            <Button Text="stop" TextColor="White" IsEnabled="{Binding IsStop}" BackgroundColor="Red" Command="{Binding StopTimerCommand}"/>
+        </StackLayout>
+    </StackLayout>
+    
+</ContentPage>

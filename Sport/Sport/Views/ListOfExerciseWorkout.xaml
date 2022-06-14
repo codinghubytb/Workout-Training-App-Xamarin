@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:model="clr-namespace:Sport.Models" xmlns:local="clr-namespace:Sport.ViewModels"
+             x:Class="Sport.Views.ListOfExerciseWorkout"
+             Shell.PresentationMode="ModalAnimated"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="AliceBlue">
+    <ContentPage.Content>
+        <StackLayout Margin="15">
+            <Label Text="Select Exercice for the round training" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Center"/>
+            <ScrollView>
+                <RefreshView Margin="0,20,0,0" x:DataType="local:ListExerciseWorkoutViewModel" Command="{Binding LoadItemsCommand}" BackgroundColor="AliceBlue" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                    <CollectionView x:Name="ItemsListView" 
+                ItemsSource="{Binding ExercisesItem}"
+                SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout  Orientation="Horizontal" Padding="10" x:DataType="model:Exercise" BackgroundColor="White">
+                                    <FlexLayout  Direction="Row" JustifyContent="SpaceBetween" HorizontalOptions="FillAndExpand">
+                                        <Image Source="{Binding Source} " WidthRequest="80" HeightRequest="80" />
+                                        <StackLayout VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Name}"  VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Large"/>
+                                            <Label Text="{Binding Difficulty}" TextColor="{Binding ColorDifficulty}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+                                        </StackLayout>
+                                        <Button Text="Select" AutomationId="{Binding Id}" Clicked="BtnSelectExercise_Clicked" VerticalOptions="CenterAndExpand" BackgroundColor="#5be9b3" CornerRadius="20" TextColor="White"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </ScrollView>
+            
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

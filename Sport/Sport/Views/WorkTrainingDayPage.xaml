@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Sport.ViewModels" xmlns:model="clr-namespace:Sport.Models"
+             x:Class="Sport.Views.WorkTrainingDayPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="Workout Detail"
+             BackgroundColor="WhiteSmoke"
+             Shell.NavBarIsVisible="False">
+
+    <StackLayout Padding="15" HorizontalOptions="FillAndExpand">
+
+        <Frame HasShadow="False" BackgroundColor="Transparent"/>
+        <Label Text="Before starting the training, please select a training session" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+        <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,20,0,0">
+            <Button Text="DAY OFF" BackgroundColor="Red" CornerRadius="20" TextColor="White" Command="{Binding DayOffCommand}" />
+            <Label Text="Workout List" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0" />
+
+            <RefreshView Margin="0,20,0,0" x:Name="refresh" x:DataType="local:WorkTrainingDayViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView x:Name="ItemsListView"  
+                ItemsSource="{Binding WorkoutItem}"
+                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Frame CornerRadius="5" x:DataType="model:Workout">
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="{Binding NameImage}" FontSize="25" TextColor="White" BackgroundColor="CadetBlue" WidthRequest="60" HeightRequest="60"/>
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="Medium" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Difficulty}" TextTransform="Uppercase" VerticalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:WorkTrainingDayViewModel}}, Path=WorkoutTapped}"		
+                                    CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            
+        </StackLayout>
+
+        <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="Red"  TextColor="White" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"></Button>
+    </StackLayout>
+    
+    
+</ContentPage>

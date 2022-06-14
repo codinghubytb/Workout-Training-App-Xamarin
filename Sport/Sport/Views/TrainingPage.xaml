@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sport.Views.TrainingPage"
+             Shell.PresentationMode="NotAnimated"
+             xmlns:vm="clr-namespace:Sport.ViewModels"
+             Title="{Binding Title}"
+             Shell.NavBarIsVisible="False">
+
+    <StackLayout Padding="15">
+        <StackLayout.Background>
+            <LinearGradientBrush EndPoint="0,1">
+                <GradientStop Color="#fefeff"
+                          Offset="0.1" />
+                <GradientStop Color="#5be9b3"
+                          Offset="1.0" />
+            </LinearGradientBrush>
+        </StackLayout.Background>
+        <Frame BackgroundColor="Transparent"/>
+        <Label Text="{Binding Date}" FontSize="15" FontAttributes="Bold" TextColor="#95000000" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Training" FontFamily="Bahila" TextTransform="Uppercase" TextDecorations="None" FontSize="35" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand"/>
+            <Button Text="History" FontSize="Medium" BackgroundColor="Transparent" Command="{Binding HistoryCommand}"/>
+        </StackLayout>
+        <Frame Margin="0,20,0,0">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="{Binding TextDay}" TextColor="Black"  FontSize="Large" VerticalOptions="CenterAndExpand" TextDecorations="None"/>
+                <Button Text="start" Command="{Binding WorkTrainingDay}" FontSize="Medium" CornerRadius="5" BackgroundColor="White" BorderColor = "#fefeff" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="0.8,0.5">
+                    <GradientStop Color="#fefeff" Offset="0"/>
+                    <GradientStop Color="Gold" Offset="1" />
+                </LinearGradientBrush>
+            </Frame.Background>
+        </Frame>
+        <StackLayout Margin="15">
+            <Label Text="Forecast of the month" HorizontalTextAlignment="Center" FontSize="Large" />
+            <ScrollView >
+                <StackLayout x:Name="StackDayTraining" ></StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

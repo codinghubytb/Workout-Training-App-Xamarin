@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Sport.Views"
+       Title="Sport"
+       x:Class="Sport.AppShell">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="Black" />
+                <Setter Property="Shell.TitleColor" Value="Black" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="Black"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95333333"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="Black"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent Title="Training" Icon="icon_training.png" Route="AboutPage" ContentTemplate="{DataTemplate local:TrainingPage}" />
+        <ShellContent Title="Workout" Icon="icon_workout.png" ContentTemplate="{DataTemplate local:WorkoutPage}" />
+        <ShellContent Title="Exercise" Icon="icon_exercise.png" ContentTemplate="{DataTemplate local:ExercisePage}" />
+        <ShellContent Title="Stop Watch" Icon="icon_stopWatch.png"  ContentTemplate="{DataTemplate local:StopWatchPage}" />
+    </TabBar>
+
+
+
+</Shell>

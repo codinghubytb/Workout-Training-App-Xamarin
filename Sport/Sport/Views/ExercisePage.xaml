@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sport.Views.ExercisePage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:Sport.ViewModels"  
+             xmlns:model="clr-namespace:Sport.Models" x:DataType="local:ExerciceViewModel"
+             x:Name="ExercicePage"
+             Shell.NavBarIsVisible="False">
+
+    <AbsoluteLayout>
+        <StackLayout Padding="15" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <StackLayout.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#fefeff"
+                          Offset="0.1" />
+                    <GradientStop Color="#5be9b3"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </StackLayout.Background>
+
+            <Frame BackgroundColor="Transparent"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Exercice" FontFamily="Bahila" TextTransform="Uppercase" TextDecorations="None" FontSize="35" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
+
+            <Frame Padding="0" Margin="0,20,0,0" CornerRadius="20">
+                <SearchBar Text="{Binding SearchText, Mode=TwoWay}" BackgroundColor="WhiteSmoke" Placeholder="Search a exercise" TextChanged="SearchBar_TextChanged"/>
+            </Frame>
+
+            <RefreshView Margin="0,20,0,0" x:DataType="local:ExerciceViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView x:Name="ItemsListView" 
+                ItemsSource="{Binding ExercisesItem}"
+                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <StackLayout Orientation="Horizontal" Padding="10" x:DataType="model:Exercise">
+                                <FlexLayout  Direction="Row" JustifyContent="SpaceBetween" HorizontalOptions="FillAndExpand">
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" TextTransform="Uppercase" LineBreakMode="NoWrap" TextColor="Black" FontSize="16" VerticalOptions="CenterAndExpand" />
+                                        <Label Text="{Binding DateTime}" LineBreakMode="NoWrap" FontFamily="" TextColor="#333333" FontSize="13" VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Button Text="{Binding Difficulty}" TextColor="{Binding ColorDifficulty }" CornerRadius="5" BackgroundColor="Transparent" BorderColor="{Binding ColorDifficulty }" BorderWidth="1.5" />
+                                    </StackLayout>
+                                </FlexLayout>
+                                
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ExerciceViewModel}}, Path=ExerciseTapped}"		
+                                    CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+
+
+        </StackLayout>
+
+        <ImageButton Source="btn_add_exercise.png" WidthRequest="50" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.9" BackgroundColor="White" CornerRadius="50" Command="{Binding AddItemCommand}"/>
+    </AbsoluteLayout>
+    
+
+</ContentPage>

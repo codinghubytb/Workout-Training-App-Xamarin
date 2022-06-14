@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Sport.ViewModels" x:DataType="viewmodels:DayTrainingViewModel"
+             x:Class="Sport.Views.DayTrainingPage"
+             Shell.PresentationMode="NotAnimated"
+             Title="{Binding Title}"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <StackLayout Margin="15">
+        
+        <Frame BackgroundColor="#5be9b3" IsVisible="{Binding VisibleTraining}">
+            <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Time :" />
+                    <Label Text="{Binding TimeWorkout}" TextColor="White" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Rounds:" />
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text="{Binding RoundPerformed}" TextColor="White"/>
+                        <Label Text="/" TextColor="White"/>
+                        <Label Text="{Binding RoundFull}" TextColor="White"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Nb Exercise :" />
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text="{Binding ExercisePerformed}" TextColor="White"/>
+                        <Label Text="/" TextColor="White"/>
+                        <Label Text="{Binding ExerciseFull}" TextColor="White"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+        
+        <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding VisibleTime}">
+            <Label Text="{Binding TextTime}" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Time}" FontSize="80"  HorizontalTextAlignment="Center"/>
+        </StackLayout>
+        
+        <StackLayout VerticalOptions="FillAndExpand" Margin="0,30,0,0" IsVisible="{Binding VisibleTraining}">
+            <Image Source="{Binding Image}" WidthRequest="300" HeightRequest="300" IsAnimationPlaying="True" HorizontalOptions="CenterAndExpand"/>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label Text="{Binding Name}" FontSize="40" HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding Repetition}" FontAttributes="Bold" FontSize="60" TextColor="Black" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Button Text="✔️ Next" Command="{Binding NextCommand}" TextColor="White" FontSize="30" CornerRadius="10" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#5be9b3"/>
+        </StackLayout>
+        
+        <StackLayout VerticalOptions="EndAndExpand" IsVisible="{Binding VisibleStart}">
+            <Button Text="Start Training" Command="{Binding StartCommand}" TextColor="White" BackgroundColor="#1E90FF" CornerRadius="10" />
+            <Button Text="Cancel"  Command="{Binding CancelCommand}"  TextColor="White" BackgroundColor="Red"/>
+        </StackLayout>
+
+        <StackLayout VerticalOptions="FillAndExpand" IsVisible="{Binding VisibleFinish}" >
+            <Label Text="Congratulations, You Managed To Finish The Training" HorizontalOptions="CenterAndExpand" FontSize="40" TextColor="Black" />
+            <Image Source="gif_Timer.gif" WidthRequest="100" HeightRequest="100" IsAnimationPlaying="True"/>
+            <StackLayout  VerticalOptions="CenterAndExpand" >
+                <Frame BackgroundColor="Gold" >
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Temps réalisé :" HorizontalOptions="StartAndExpand" TextColor="Black" FontSize="Large"/>
+                        <Label Text="{Binding TimeWorkout}" HorizontalOptions="EndAndExpand" TextColor="Black" FontSize="Large"/>
+                    </StackLayout>
+                </Frame>
+                <Frame  BackgroundColor="Gold">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Rounds effectué :" HorizontalOptions="StartAndExpand" TextColor="Black" FontSize="Large"/>
+                        <Label Text="{Binding RoundPerformed}" HorizontalOptions="EndAndExpand" TextColor="Black" FontSize="Large"/>
+                    </StackLayout>
+                </Frame>
+                <Frame  BackgroundColor="Gold">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Exercise Réalisé :" TextColor="Black" HorizontalOptions="StartAndExpand"  FontSize="Large"/>
+                        <Label Text="{Binding ExerciseFull}" HorizontalOptions="EndAndExpand" TextColor="Black" FontSize="Large"/>
+                    </StackLayout>
+                </Frame>
+                <Frame  BackgroundColor="Gold">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Difficulty :" TextColor="Black" HorizontalOptions="StartAndExpand"  FontSize="Large"/>
+                        <Label Text="{Binding Difficulty}" HorizontalOptions="EndAndExpand" TextColor="Black" FontSize="Large"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <Button BackgroundColor="Red" Text="Save and Left" Command="{Binding LeftWorkoutCommand}"  TextColor="White" FontSize="Large"/>
+        </StackLayout>
+    </StackLayout>
+
+
+</ContentPage>

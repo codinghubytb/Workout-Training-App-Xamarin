@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sport.Views.WorkoutPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:Sport.ViewModels"  
+             xmlns:model="clr-namespace:Sport.Models"  
+             x:Name="ExercicePage"
+             Shell.NavBarIsVisible="False">
+
+    <AbsoluteLayout>
+        <AbsoluteLayout.Background>
+            <LinearGradientBrush EndPoint="0,1">
+                <GradientStop Color="#fefeff"
+                          Offset="0.1" />
+                <GradientStop Color="#5be9b3"
+                          Offset="1.0" />
+            </LinearGradientBrush>
+        </AbsoluteLayout.Background>
+
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" Padding="15">
+
+            <Frame BackgroundColor="Transparent" />
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Workout 💪" FontFamily="Bahila" TextTransform="Uppercase" TextDecorations="None" FontSize="35" FontAttributes="Bold" TextColor="Black" HorizontalOptions="StartAndExpand"/>
+            </StackLayout>
+
+            <Frame Padding="0" Margin="0,20,0,0" CornerRadius="20">
+                <SearchBar Text="{Binding SearchText, Mode=TwoWay}" BackgroundColor="WhiteSmoke" Placeholder="Search a workout" TextChanged="SearchBar_TextChanged"/>
+            </Frame>
+
+            <RefreshView Margin="0,20,0,0" x:DataType="local:WorkoutViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView x:Name="ItemsListView"  
+                ItemsSource="{Binding WorkoutItem}"
+                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Frame CornerRadius="5" x:DataType="model:Workout">
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="{Binding NameImage}" FontSize="25" TextColor="White" BackgroundColor="CadetBlue" WidthRequest="60" HeightRequest="60"/>
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="Medium" VerticalTextAlignment="Center"/>
+                                        <Label Text="{Binding Difficulty}" TextTransform="Uppercase" VerticalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:WorkoutViewModel}}, Path=WorkoutTapped}"		
+                                    CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+
+        <Button Text="Create Workout →" Command="{Binding CreateWorkout}" FontSize="Medium" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.9" 
+                BackgroundColor="Black" TextColor="White" CornerRadius="50"/>
+    </AbsoluteLayout>
+</ContentPage>

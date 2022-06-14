@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Sport.ViewModels" x:DataType="viewmodels:NewWorkoutViewModel"
+             x:Class="Sport.Views.NewWorkoutPage"
+             Shell.NavBarIsVisible="False">
+
+    <StackLayout>
+
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout Margin="15">
+                <Label Text="Create Workout" HorizontalOptions="CenterAndExpand"  FontSize="25" TextColor="Black" />
+                <Frame BackgroundColor="AliceBlue" Margin="0,20,0,0">
+                    <StackLayout>
+
+                        <Label Text="Informations" FontSize="Large" TextColor="Black" Opacity="0.8" HorizontalTextAlignment="Center"/>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Name : "  FontSize="Medium" TextColor="#333" VerticalOptions="CenterAndExpand" />
+                                <Entry  Placeholder="Workout Full Body" MaxLength="40" Text="{Binding Name, Mode=TwoWay}"  HorizontalOptions="FillAndExpand" PlaceholderColor="Gray"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Description : " FontSize="Medium" TextColor="#333" VerticalOptions="CenterAndExpand" />
+                                <Entry Placeholder="Description Workout" MaxLength="200" Text="{Binding Description, Mode=TwoWay}" HorizontalOptions="FillAndExpand" PlaceholderColor="Gray" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Rounds: " FontSize="Medium" TextColor="#333" VerticalOptions="CenterAndExpand" />
+                                <Entry Placeholder="10 rounds" Text="{Binding Rounds, Mode=TwoWay}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" PlaceholderColor="Gray" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Break ⌛: " FontSize="Medium" TextColor="#333" VerticalOptions="CenterAndExpand" />
+                                <Entry Placeholder="20" Text="{Binding Break, Mode=TwoWay}"  HorizontalOptions="FillAndExpand"  Keyboard="Numeric" PlaceholderColor="Gray" />
+                                <Label Text="sec" FontSize="Medium" TextColor="#333" VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Difficulty : " FontSize="Medium" TextColor="#333" VerticalOptions="CenterAndExpand" />
+                                <Button Text="{Binding TextDifficulty, Mode=TwoWay}" Command="{Binding DifficultyCommand}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="AliceBlue" Margin="0,20,0,0">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Round Training " VerticalTextAlignment="Center" FontSize="Large" TextColor="Black" Opacity="0.8" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                            <Button Text="add a exercise" Command="{Binding AddExerciseCommand}" TextColor="White" BackgroundColor="SkyBlue"/>
+                        </StackLayout>
+                        <StackLayout x:Name="stackExercice" >
+
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal" Padding="15">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="OrangeRed" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" Command="{Binding SaveCommand}" BackgroundColor="#5be9b3" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+
+
+</ContentPage>

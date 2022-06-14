@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sport.Views.EditExercisePage"
+             Title="Edit Exercice"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False">
+
+    <FlexLayout Direction="Column" JustifyContent="SpaceAround" Padding="15">
+        <Label Text="EDIT EXERCICE" HorizontalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+        <StackLayout Orientation="Horizontal">
+            <Frame HorizontalOptions="CenterAndExpand" Margin="0" Padding="0">
+                <Image x:Name="imagePicker" Source="{Binding Image, Mode=TwoWay}" HeightRequest="100" WidthRequest="100" HorizontalOptions="CenterAndExpand"/>
+            </Frame>
+            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                <Button BackgroundColor="Transparent" TextColor="Red" Text="Add Image" Command="{Binding TakePhotoCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                <Button BackgroundColor="Transparent"  Text="More high" Command="{Binding ViewImageLargerCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+
+        <BoxView BackgroundColor="Gray" HeightRequest="2" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Name : " FontSize="Medium" Margin="0" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+            <Entry Text="{Binding Text, Mode=TwoWay}" MaxLength="14" FontSize="Medium" Placeholder="Name Exercise"  TextTransform="Uppercase" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Date : " FontSize="Medium" Margin="0" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+            <Entry  IsReadOnly="True" Text="{Binding Date}" FontSize="Medium" TextColor="Gray" Margin="0"  HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical">
+            <Label Text="Description : " FontSize="Medium" Margin="0" VerticalOptions="CenterAndExpand" />
+            <Entry Placeholder="Description" MaxLength="150" Text="{Binding Description, Mode=TwoWay}" FontSize="Medium" Margin="0" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Difficulty : " FontSize="Medium" Margin="0" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <Button Text="{Binding TextDifficulty, Mode=TwoWay}" BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1.5" Command="{Binding DifficultyCommand}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="Favori :" FontSize="Medium"  Margin="0" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <Button Text="{Binding Favorite}" TextColor="Black" Command="{Binding FavoriteCommand }" FontSize="35" BackgroundColor="Transparent"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" BackgroundColor="OrangeRed" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save 1/2" Command="{Binding SaveCommand}" BackgroundColor="#5be9b3" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </FlexLayout>
+
+</ContentPage>
